@@ -32,7 +32,7 @@ Before triaging feedback, you MUST know these constraints. This avoids wasted ba
 
 ### Triage rule
 
-When a comment requests something in the "CANNOT do" list, classify it as **Requires manual action**. Don't dwell on the limitation — simply note it in the summary and move on. These are normal; most design reviews will have a mix of API-supported and manual changes. Save the details for the manual changes checklist at the end (Step 7).
+When a comment requests something in the "CANNOT do" list, classify it as **Requires manual action**. Don't dwell on the limitation — simply note it in the summary and move on. These are normal; most design reviews will have a mix of API-supported and manual changes. Save the details for the manual changes checklist at the end (Step 6).
 
 ## Workflow
 
@@ -54,7 +54,7 @@ When a comment requests something in the "CANNOT do" list, classify it as **Requ
 Classify each comment thread into one of these categories:
 
 - **Actionable** — a change that the API supports and you can reasonably interpret. Use your best judgement — if a comment says "make the title punchier", rewrite it to be punchier rather than flagging it as ambiguous. If a comment says "fix the spacing", look at the design content and make a reasonable adjustment. Only escalate to the user when you genuinely cannot determine what the reviewer intends (e.g., two reviewers directly contradict each other, or a comment references something you can't find in the design).
-- **Requires manual action** — the reviewer wants something the API cannot do (font family change, new text element, background change, page reorder, etc.). Note these briefly in the summary — full details go in the manual changes checklist (Step 7).
+- **Requires manual action** — the reviewer wants something the API cannot do (font family change, new text element, background change, page reorder, etc.). Note these briefly in the summary — full details go in the manual changes checklist (Step 6).
 - **Resolved** — already addressed, explicitly marked done, or is a positive acknowledgement (e.g., "LGTM", "looks good")
 
 Present a summary to the user organised by category: what you plan to change, what needs clarification, what must be done manually, and what you're skipping.
@@ -64,7 +64,7 @@ Present a summary to the user organised by category: what you plan to change, wh
 - Present the plan with two clearly separated sections: the **design edits** you intend to apply and the **proposed comment-thread replies** you intend to post
 - Wait for the user to approve; if the user wants adjustments, update the plan and confirm once more
 
-**This single approval covers the listed design edits and their transaction commit — do not ask again before committing those same approved edits. It does not by itself authorise posting comment replies; that is a separate side effect handled in Step 8.**
+**This single approval covers the listed design edits and their transaction commit — do not ask again before committing those same approved edits. It does not by itself authorise posting comment replies; that is a separate side effect handled in Step 7.**
 
 ### Step 5: Apply and Commit the Changes
 
@@ -75,7 +75,7 @@ Present a summary to the user organised by category: what you plan to change, wh
 - Call `Canva:commit-editing-transaction` to save — do NOT ask "shall I commit?" or "ready to save?"
 - Show the thumbnail from the editing response to the user as confirmation
 
-### Step 7: Present Remaining Manual Changes
+### Step 6: Present Remaining Manual Changes
 
 After committing (or if no API-supported changes were possible), present a clear checklist of everything that still needs to be done manually in the Canva editor:
 
@@ -95,7 +95,7 @@ After committing (or if no API-supported changes were possible), present a clear
 
 Include the slide number, what to change, who requested it, and step-by-step instructions so the user can work through the list quickly.
 
-### Step 8: Resolve Comment Threads
+### Step 7: Resolve Comment Threads
 
 - Send replies only when the user's current request explicitly asks for or approves replies to those threads
 - When reply approval is absent, return concise drafts keyed to each thread, each marked with the status `COMMENT_REPLY_APPROVAL_REQUIRED` — do not post them
