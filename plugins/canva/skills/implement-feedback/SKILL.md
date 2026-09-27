@@ -61,10 +61,10 @@ Present a summary to the user organised by category: what you plan to change, wh
 
 ### Step 4: Get User Approval — ONE time only
 
-- Present the plan and wait for the user to approve
-- If the user wants adjustments, update the plan and confirm once more
+- Present the plan with two clearly separated sections: the **design edits** you intend to apply and the **proposed comment-thread replies** you intend to post
+- Wait for the user to approve; if the user wants adjustments, update the plan and confirm once more
 
-**This is the only confirmation point in the entire workflow. Once the user says yes, go.**
+**This single approval covers the listed design edits and their transaction commit — do not ask again before committing those same approved edits. It does not by itself authorise posting comment replies; that is a separate side effect handled in Step 8.**
 
 ### Step 5: Apply and Commit the Changes
 
@@ -97,16 +97,19 @@ Include the slide number, what to change, who requested it, and step-by-step ins
 
 ### Step 8: Resolve Comment Threads
 
-- After committing, call `Canva:reply-to-comment` on each actionable thread to note what was changed
-- For "Requires manual action" threads, reply noting what was done as the closest alternative and what still needs manual attention
-- This closes the feedback loop so reviewers can see their comments were addressed
+- Send replies only when the user's current request explicitly asks for or approves replies to those threads
+- When reply approval is absent, return concise drafts keyed to each thread, each marked with the status `COMMENT_REPLY_APPROVAL_REQUIRED` — do not post them
+- For "Requires manual action" threads, draft a reply noting what was done as the closest alternative and what still needs manual attention
+- After permitted replies, report the thread IDs actually updated — never describe unsent drafts as replied or resolved
+- When replies are approved and posted, this closes the feedback loop so reviewers can see their comments were addressed
 
 ## Rules
 
 - Be helpful, not cautious — interpret feedback generously and make your best attempt at a change rather than labelling it "ambiguous" and giving up. The user can always reject your changes in the approval step.
 - Only escalate to the user when you genuinely can't figure out the intent — two reviewers directly contradict each other, or a comment references something you can't find in the design
 - When reviewers disagree, present both sides and let the user decide
-- Show the summary of planned changes and wait for approval ONCE — after that, execute everything without further confirmation
+- Show the summary of planned changes and wait for approval ONCE — after that, execute the approved design edits and commit without further confirmation. This approval does not extend to posting comment replies.
 - NEVER ask "shall I commit?", "ready to save?", or any variation — the user's initial approval covers the entire edit-and-commit flow
+- Comment replies are a separate side effect: post them only when the user's current request explicitly asks for or approves replies to those threads. Otherwise return drafts marked `COMMENT_REPLY_APPROVAL_REQUIRED` and report only the thread IDs you actually updated.
 - Manual changes are normal and expected — don't over-explain or apologise for API limitations, just include them in the checklist
 - Batch operations: use a single `perform-editing-operations` call with multiple operations rather than one call per change
