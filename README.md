@@ -71,7 +71,7 @@ Implement reviewer feedback on a Canva design: read comment threads and apply th
 - Triages feedback into actionable, ambiguous, and manual-only categories
 - Applies API-supported changes (text, formatting, images) after user approval
 - Presents a checklist of remaining manual changes with step-by-step instructions
-- Replies to comment threads after changes are made
+- Replies to comment threads after changes are made only when the user explicitly approves those replies; otherwise returns drafts marked `COMMENT_REPLY_APPROVAL_REQUIRED`
 
 ### edit-design
 
